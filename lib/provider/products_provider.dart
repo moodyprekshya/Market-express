@@ -68,8 +68,11 @@ class ProductsProvider with ChangeNotifier {
 
     try {
       final response = await http.get(url);
+      
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       if (extractedData.isEmpty) {
+        
+        _items=[];
         return;
       }
 
@@ -81,6 +84,7 @@ class ProductsProvider with ChangeNotifier {
       final favouriteData = json.decode(favouriteResponse.body);
       final List<Product> loadedProducts = [];
       if (extractedData.isEmpty) {
+        _items=[];
         return;
       }
 
